@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require("cors")
 
 const app = express();
 
@@ -15,6 +16,8 @@ const workoutRoutes = require("./routes/workoutRoutes")
 
 //Middleware*********************
 app.use(express.json());
+
+app.use(cors());
 
 
 app.get("/", (req,res)=>{
