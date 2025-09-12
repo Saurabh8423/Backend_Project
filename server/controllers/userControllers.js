@@ -2,17 +2,21 @@ const User = require("../models/userModel")
 
 // Login user*********************
 const loginUser = async(req, res) =>{
-    res.json({msg:"User logged in!"});
-
+    res.json({msg:"user logged in!"});
 }
 
 
 // Signup User ******************
 
 const signupUser =async(req, res) => {
-    res.json({msg:"User signed up!"});
+    const {email, password}= req.body;
+    try{
+        const user = await User.signup(email, password);
+        res.status(200).json({email, id: user._id})
+    }catch(err){
+        res.status(400).json({error: err.message})
+    }   
 };
-
 
 module.exports ={
     loginUser,
