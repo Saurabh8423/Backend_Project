@@ -1,7 +1,5 @@
 const express = require("express");
 
-const Workout = require("../models/workoutModels");
-
 const router = express.Router();
 
 //Require controller*************

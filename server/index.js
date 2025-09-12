@@ -13,7 +13,7 @@ require("./db/connection")
 
 // Require routes*****************
 const workoutRoutes = require("./routes/workoutRoutes")
-
+const userRoutes = require("./routes/userRoutes")
 //Middleware*********************
 app.use(express.json());
 
@@ -26,6 +26,8 @@ app.get("/", (req,res)=>{
 
 //Routes ***********************
 app.use("/api/workouts", workoutRoutes);
+app.use("/api/user", userRoutes);
+
 
 app.listen(port, ()=>{
     console.log(`Server is running at PORT: ${port}`);
