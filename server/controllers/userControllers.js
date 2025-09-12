@@ -1,4 +1,5 @@
-const User = require("../models/userModel")
+const User = require("../models/userModel");
+const createToken = require("../utils/token")
 
 // Login user*********************
 const loginUser = async(req, res) =>{
@@ -9,10 +10,14 @@ const loginUser = async(req, res) =>{
 // Signup User ******************
 
 const signupUser =async(req, res) => {
-    const {email, password}= req.body;
+    const {_id, email, password}= req.body;
     try{
         const user = await User.signup(email, password);
-        res.status(200).json({email, id: user._id})
+        
+        //create token **************
+        const token = createToken(_id)
+
+        res.status(200).json({email, password, token})
     }catch(err){
         res.status(400).json({error: err.message})
     }   
